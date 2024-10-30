@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communities - Mitra Mandali</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles for the dialog */
+        .dialog {
+            display: none; /* Hide by default */
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dialog.active {
+            display: block; /* Show when active */
+        }
+
+        .dialog-overlay {
+            position: fixed;
+            z-index: 900;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none; /* Hide by default */
+        }
+
+        .dialog-overlay.active {
+            display: block; /* Show when active */
+        }
+
+        .close-btn {
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="communities.html" class="active">Communities</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="help.html">Help</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Communities Section -->
+    <section id="communities">
+        <h1>Join a Community</h1>
+        <div class="community-cards">
+            <div class="card">
+                <h2>Startup Enthusiasts</h2>
+                <p>A group for entrepreneurs and tech innovators looking to change the world.</p>
+                <a href="#" class="btn read-more" data-description="Join the Startup Enthusiasts to network with fellow entrepreneurs, share ideas, and explore funding opportunities.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Photography Lovers</h2>
+                <p>Connect with Bangalore's photography community and share your best clicks.</p>
+                <a href="#" class="btn read-more" data-description="Photography Lovers is a vibrant community where you can share your best shots, participate in photo walks, and learn from professionals.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Bangalore Book Club</h2>
+                <p>A place for book lovers to discuss literature, share recommendations, and meet like-minded individuals.</p>
+                <a href="#" class="btn read-more" data-description="The Bangalore Book Club offers monthly meetups to discuss selected books, share insights, and enjoy themed gatherings.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Tech Innovators</h2>
+                <p>A community for tech enthusiasts to share ideas and collaborate on projects.</p>
+                <a href="#" class="btn read-more" data-description="Join Tech Innovators to collaborate on exciting tech projects, learn about new trends, and enhance your skills with workshops and hackathons.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Art and Craft</h2>
+                <p>For those who love to create art and craft projects.</p>
+                <a href="#" class="btn read-more" data-description="The Art and Craft community welcomes all creatives to share their works, participate in workshops, and discover new techniques.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Music Lovers</h2>
+                <p>Connect with fellow music enthusiasts and share your playlists.</p>
+                <a href="#" class="btn read-more" data-description="Music Lovers is the perfect community for discussing genres, sharing playlists, and attending local gigs and open mic events.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Culinary Explorers</h2>
+                <p>For foodies who love to explore new recipes and cuisines.</p>
+                <a href="#" class="btn read-more" data-description="Join Culinary Explorers to swap recipes, attend cooking classes, and discover the rich food culture of Bangalore.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Travel Enthusiasts</h2>
+                <p>Share travel experiences and tips with fellow adventurers.</p>
+                <a href="#" class="btn read-more" data-description="Travel Enthusiasts is a community for those who love to explore new places, share travel tips, and plan group trips.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Fitness Fanatics</h2>
+                <p>A group dedicated to health and fitness.</p>
+                <a href="#" class="btn read-more" data-description="Fitness Fanatics encourages a healthy lifestyle through group workouts, challenges, and sharing nutrition tips.">Read More</a>
+            </div>
+            <div class="card">
+                <h2>Nature Lovers</h2>
+                <p>A community for those who love the outdoors and environmental conservation.</p>
+                <a href="#" class="btn read-more" data-description="Join Nature Lovers to participate in conservation efforts, nature walks, and discussions about sustainability and the environment.">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dialog for Read More -->
+    <div class="dialog-overlay" id="dialog-overlay"></div>
+    <div class="dialog" id="dialog">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <h2 id="dialog-title"></h2>
+        <p id="dialog-description"></p>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Bangalore Explore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript to handle dialog opening and closing
+        const readMoreButtons = document.querySelectorAll('.read-more');
+        const dialog = document.getElementById('dialog');
+        const dialogTitle = document.getElementById('dialog-title');
+        const dialogDescription = document.getElementById('dialog-description');
+        const dialogOverlay = document.getElementById('dialog-overlay');
+        const closeButton = document.getElementById('close-btn');
+
+        readMoreButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                dialogTitle.textContent = button.previousElementSibling.previousElementSibling.textContent; // Card title
+                dialogDescription.textContent = button.dataset.description; // Get description from data attribute
+                dialog.classList.add('active');
+                dialogOverlay.classList.add('active');
+            });
+        });
+
+        closeButton.addEventListener('click', () => {
+            dialog.classList.remove('active');
+            dialogOverlay.classList.remove('active');
+        });
+
+        dialogOverlay.addEventListener('click', () => {
+            dialog.classList.remove('active');
+            dialogOverlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

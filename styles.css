@@ -1,0 +1,610 @@
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
+    color: #2d3e50;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+p {
+    color: #555;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* Navigation Bar */
+header {
+    background-color: #333;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.4s ease;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #f39c12;
+}
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(to right, rgba(0, 123, 255, 0.7), rgba(0, 255, 123, 0.7)), url('bangalore.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+    animation: fadeIn 2s ease-in;
+}
+
+#hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: slideInDown 1.5s ease-in-out;
+}
+
+#hero p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    animation: slideInUp 1.5s ease-in-out;
+}
+
+#hero .btn {
+    padding: 10px 20px;
+    background-color: #f39c12;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 2s;
+}
+
+#hero .btn:hover {
+    background-color: #e67e22;
+}
+
+/* Gallery Section */
+#gallery {
+    padding: 50px;
+    background-color: #f7f7f7;
+    text-align: center;
+}
+
+#gallery h2 {
+    margin-bottom: 20px;
+    position: relative;
+    font-size: 32px;
+}
+
+.gallery-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-container:hover {
+    transform: scale(1);
+}
+
+.gallery-item {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    transition: all 0.4s ease-in-out;
+}
+
+.gallery-item img {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.4s;
+    border-radius: 8px;
+}
+
+.gallery-item:hover::before {
+    opacity: 1;
+}
+
+/* Explore Section */
+#explore {
+    padding: 50px;
+    background-color: #fff;
+    text-align: center;
+}
+
+#explore h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    position: relative;
+}
+
+.explore-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    width: 240px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #2d3e50;
+}
+
+.card p {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.card .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.card .btn:hover {
+    background-color: #2980b9;
+}
+
+/* Search Section */
+#search {
+    padding: 50px;
+    background-color: #ecf0f1;
+    text-align: center;
+}
+
+#search h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #2d3e50;
+}
+
+#search input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: box-shadow 0.3s ease;
+}
+
+#search input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Recommendations Section */
+#recommendation {
+    padding: 50px;
+    background-color: #fff;
+    text-align: center;
+}
+
+#recommendation h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #2d3e50;
+}
+
+#recommendation p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #555;
+}
+
+
+/* Footer Section */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Media Queries (Responsive Design) */
+@media (max-width: 768px) {
+    .explore-cards {
+        flex-direction: column;
+    }
+
+    .gallery-container {
+        flex-direction: column;
+    }
+}
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #333;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Section Styles */
+section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: white;
+    margin: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+/* Blog and Community Post Styles */
+.blog-posts,
+.community-cards,
+.explore-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.post,
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 15px;
+    width: 30%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+}
+
+.post:hover,
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+a.btn:hover {
+    background-color: #e65c00;
+}
+
+/* Forms */
+form {
+    margin: 20px auto;
+    width: 50%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #e65c00;
+}
+
+/* FAQs */
+.faq h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.faq p {
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+/* Library Section Styles */
+#library {
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 40px 20px; /* Add padding for space */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center; /* Center align the text */
+}
+
+#library h1 {
+    font-size: 2.5em; /* Large heading */
+    margin-bottom: 20px; /* Space below heading */
+    color: #333; /* Darker text color for contrast */
+}
+
+.library-list {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.library-list li {
+    margin: 15px 0; /* Space between list items */
+}
+
+.library-list a {
+    text-decoration: none; /* Remove underline from links */
+    color: #007BFF; /* Bootstrap primary color */
+    font-size: 1.2em; /* Slightly larger font for links */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.library-list a:hover {
+    color: #0056b3; /* Darker shade on hover */
+    text-decoration: underline; /* Underline on hover for clarity */
+}
+/* Search Section Styles */
+#search {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#search input[type="text"] {
+    width: 300px; /* Adjust the width as needed */
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #007bff; /* Change color as needed */
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#search input[type="text"]:focus {
+    border-color: #0056b3; /* Darker shade on focus */
+}
+
+#search button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white; /* Text color */
+    background-color: #007bff; /* Button background color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 10px; /* Spacing between input and button */
+}
+
+#search button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+#search button:active {
+    transform: scale(0.95); /* Slightly shrink the button when pressed */
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+section, .post, .card {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .blog-posts, .community-cards, .explore-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .post, .card {
+        width: 80%;
+    }
+
+    form {
+        width: 80%;
+    }
+
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}

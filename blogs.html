@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - Mitra Mandali</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic styles for the dialog */
+        .dialog {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background: white;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            color: red;
+            float: right;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function openDialog(content) {
+            const dialog = document.getElementById('dialog');
+            const overlay = document.getElementById('overlay');
+            dialog.querySelector('.dialog-content').innerHTML = content;
+            dialog.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function closeDialog() {
+            const dialog = document.getElementById('dialog');
+            const overlay = document.getElementById('overlay');
+            dialog.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html" class="active">Blogs</a></li>
+                <li><a href="communities.html">Communities</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="help.html">Help</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Blog Section -->
+    <section id="blogs">
+        <h1>Latest Blogs</h1>
+        <div class="blog-posts">
+            <div class="post">
+                <h2>Bangalore's Hidden Gems</h2>
+                <p>Explore the lesser-known spots in Bangalore that offer unique experiences for residents and visitors alike.</p>
+                <a href="#" class="btn" onclick="openDialog('Bangalore is not just about its IT parks and bustling streets; it has hidden gems waiting to be discovered. From quaint cafes tucked away in narrow lanes to ancient temples that tell tales of the city’s rich history, these places provide a unique glimpse into the local culture. Discover stunning viewpoints, serene parks, and artistic neighborhoods that showcase the city’s artistic side. Whether you’re a resident or a tourist, these hidden treasures promise to enrich your experience of Bangalore.')">Read More</a>
+            </div>
+            <div class="post">
+                <h2>Top Startups to Watch in 2024</h2>
+                <p>From AI to EdTech, discover the most promising startups emerging from Bangalore's tech ecosystem.</p>
+                <a href="#" class="btn" onclick="openDialog('As Bangalore continues to be the Silicon Valley of India, a new wave of startups is emerging across various sectors. In 2024, look out for companies pushing the boundaries of technology, especially in artificial intelligence and education technology. These startups are not only innovating but also addressing real-world challenges. With the right mix of talent, technology, and vision, they are set to reshape industries and create impactful solutions. Stay informed about their journeys and contributions to the tech landscape.')">Read More</a>
+            </div>
+            <div class="post">
+                <h2>Weekend Getaways from Bangalore</h2>
+                <p>Find out the best weekend destinations just a few hours from the city for a quick escape.</p>
+                <a href="#" class="btn" onclick="openDialog('Bangalore is ideally located for weekend getaways, offering a variety of destinations to choose from. Whether you prefer the serene hills of Coorg, the historical charm of Mysore, or the tranquil beaches of Gokarna, there’s something for everyone. Just a few hours away, these places provide a perfect escape from the hustle and bustle of city life. Plan your next adventure and experience the natural beauty and cultural richness that Karnataka has to offer!')">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dialog and Overlay -->
+    <div class="dialog-overlay" id="overlay" onclick="closeDialog()"></div>
+    <div class="dialog" id="dialog">
+        <span class="close-btn" onclick="closeDialog()">×</span>
+        <div class="dialog-content"></div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Bangalore Explore. All rights reserved.</p>
+    </footer>
+</body>
+</html>

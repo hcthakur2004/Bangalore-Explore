@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mitra Mandali</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="communities.html">Communities</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="help.html">Help</a></li>
+                <li><a href="login.html" class="active">Login</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Login Section -->
+    <section id="login">
+        <h1>Login to Your Account</h1>
+        <form action="#" method="post" onsubmit="return login(event)">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up here</a></p>
+        <p>Demo Account - Username: demo | Password: demo123</p>
+    </section>
+
+    <!-- Signup Section (Hidden by Default) -->
+    <section id="signup" style="display: none;">
+        <h1>Create Your Account</h1>
+        <form action="#" method="post" onsubmit="return signup(event)">
+            <div class="form-group">
+                <label for="new-username">Username:</label>
+                <input type="text" id="new-username" name="new-username" required>
+            </div>
+            <div class="form-group">
+                <label for="new-password">Password:</label>
+                <input type="password" id="new-password" name="new-password" required>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Bangalore Explore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSignup() {
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('signup').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.getElementById('signup').style.display = 'none';
+            document.getElementById('login').style.display = 'block';
+        }
+
+        function login(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Check demo account
+            if (username === 'demo' && password === 'demo123') {
+                alert('Login successful as demo user!');
+                window.location.href = 'index.html'; // Redirect to home page
+            } else {
+                alert('Login failed. Please check your username and password.');
+            }
+        }
+
+        function signup(event) {
+            event.preventDefault();
+            const newUsername = document.getElementById('new-username').value;
+            const newPassword = document.getElementById('new-password').value;
+
+            // This is where you would normally send the new user data to your server
+            alert(`Signup successful! Welcome, ${newUsername}.`);
+            showLogin(); // Show login again after successful signup
+        }
+    </script>
+</body>
+</html>

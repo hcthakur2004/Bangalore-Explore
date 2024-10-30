@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - Mitra Mandali</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function showEmailPopup(event) {
+            event.preventDefault(); // Prevent the default form submission
+            alert("Thank you for your submission! Please send an email to hcthakur2004@gmail.com for further assistance.");
+            // Optionally, you can reset the form after submission
+            document.querySelector('form').reset();
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="communities.html">Communities</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="help.html" class="active">Help</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Help Section -->
+    <section id="help">
+        <h1>How Can We Assist You?</h1>
+
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <div class="faq">
+            <h3>How do I join a community?</h3>
+            <p>Go to the Communities page and click on the "Join Now" button under the community you want to join.</p>
+
+            <h3>How can I submit a blog post?</h3>
+            <p>Once logged in, navigate to the Blogs page, and you'll find an option to submit your post.</p>
+
+            <h3>How do I reset my password?</h3>
+            <p>If you forgot your password, click on the "Forgot Password" link on the login page to reset it.</p>
+        </div>
+
+        <h2>Contact Support</h2>
+        <form action="#" method="post" onsubmit="showEmailPopup(event)">
+            <div class="form-group">
+                <label for="issue">Describe your issue:</label>
+                <textarea id="issue" name="issue" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Bangalore Explore. All rights reserved.</p>
+    </footer>
+</body>
+</html>
