@@ -10,6 +10,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+
+function openDialog(content) {
+            const dialog = document.getElementById('dialog');
+            const overlay = document.getElementById('overlay');
+            dialog.querySelector('.dialog-content').innerHTML = content;
+            dialog.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function closeDialog() {
+            const dialog = document.getElementById('dialog');
+            const overlay = document.getElementById('overlay');
+            dialog.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
 // Function to toggle navigation bar background on scroll
 window.onscroll = function() {
     const header = document.querySelector('header');
