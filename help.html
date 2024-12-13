@@ -3,19 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help - Mitra Mandali</title>
+    <title>Help - Bangalore Explore - Connect with Bangalore's Communities</title>
     <link rel="stylesheet" href="styles.css">
+       
     <script>
-        function showEmailPopup(event) {
-            event.preventDefault(); // Prevent the default form submission
-            alert("Thank you for your submission! Please send an email to hcthakur2004@gmail.com for further assistance.");
-            // Optionally, you can reset the form after submission
-            document.querySelector('form').reset();
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            // Toggle FAQ answers
+            document.querySelectorAll('.faq-item h3').forEach(question => {
+                question.addEventListener('click', function () {
+                    const answer = this.nextElementSibling;
+                    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                });
+            });
+
+            // Character count for issue description
+            const issueField = document.getElementById('issue');
+            const charCount = document.getElementById('charCount');
+
+            issueField.addEventListener('input', function () {
+                charCount.textContent = `${this.value.length} / 500 characters`;
+                if (this.value.length > 500) {
+                    charCount.style.color = 'red';
+                } else {
+                    charCount.style.color = '#666';
+                }
+            });
+
+            // Form submission with enhanced validation
+            document.querySelector('form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const issueDescription = issueField.value.trim();
+                const userEmail = document.getElementById('email').value.trim();
+                const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+                if (!emailPattern.test(userEmail)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                if (issueDescription.length > 500) {
+                    alert('Issue description is too long. Please limit it to 500 characters.');
+                    return;
+                }
+
+                alert(`Thank you for your submission! Please send an email to hcthakur2004@gmail.com for further assistance.\n\nYour Issue: ${issueDescription}\nEmail: ${userEmail}`);
+                
+                this.reset();
+                charCount.textContent = "0 / 500 characters";
+            });
+        });
     </script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <header>
         <nav>
             <ul>
@@ -31,27 +71,31 @@
         </nav>
     </header>
 
-    <!-- Help Section -->
     <section id="help">
         <h1>How Can We Assist You?</h1>
 
         <h2>Frequently Asked Questions (FAQ)</h2>
         <div class="faq">
-            <h3>How do I join a community?</h3>
-            <p>Go to the Communities page and click on the "Join Now" button under the community you want to join.</p>
-
-            <h3>How can I submit a blog post?</h3>
-            <p>Once logged in, navigate to the Blogs page, and you'll find an option to submit your post.</p>
-
-            <h3>How do I reset my password?</h3>
-            <p>If you forgot your password, click on the "Forgot Password" link on the login page to reset it.</p>
+            <div class="faq-item">
+                <h3>How do I join a community?</h3>
+                <p>Go to the Communities page and click on the "Join Now" button under the community you want to join.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I submit a blog post?</h3>
+                <p>Once logged in, navigate to the Blogs page, and you'll find an option to submit your post.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do I reset my password?</h3>
+                <p>If you forgot your password, click on the "Forgot Password" link on the login page to reset it.</p>
+            </div>
         </div>
 
         <h2>Contact Support</h2>
-        <form action="#" method="post" onsubmit="showEmailPopup(event)">
+        <form action="#" method="post">
             <div class="form-group">
                 <label for="issue">Describe your issue:</label>
-                <textarea id="issue" name="issue" required></textarea>
+                <textarea id="issue" name="issue" maxlength="500" required></textarea>
+                <div class="char-count" id="charCount">0 / 500 characters</div>
             </div>
             <div class="form-group">
                 <label for="email">Your Email:</label>
@@ -61,7 +105,6 @@
         </form>
     </section>
 
-    <!-- Footer Section -->
     <footer>
         <p>&copy; 2024 Bangalore Explore. All rights reserved.</p>
     </footer>
