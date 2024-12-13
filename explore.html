@@ -3,45 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore - Mitra Mandali</title>
+    <title>Explore - Bangalore Explore - Connect with Bangalore's Communities</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+    
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -62,38 +26,76 @@
 
     <!-- Explore Section -->
     <section id="explore">
-        <h1>Explore Events and Activities</h1>
+        <h1>Explore Bangalore's Vibrant Events</h1>
         <div class="explore-cards">
             <div class="card">
-                <h2>Art in the Park</h2>
-                <p>An open-air art gallery showcasing local talent. Every Sunday at Cubbon Park.</p>
-                <a href="#" class="btn" onclick="openModal('artInTheParkModal')">Explore More</a>
+                <h2>Bangalore Photography Expedition</h2>
+                <p>Capture the essence of Bangalore through your lens. A photography tour across the city's most iconic locations.</p>
+                <a href="#" class="btn" onclick="openModal('photographyModal')">Explore More</a>
             </div>
             <div class="card">
-                <h2>Bangalore Marathon 2024</h2>
-                <p>Join the city’s biggest marathon and run for a cause. Sign up for the event happening in March 2024.</p>
-                <a href="#" class="btn" onclick="openModal('marathonModal')">Register Now</a>
+                <h2>Heritage Walk: Bangalore's Historic Sites</h2>
+                <p>Discover the rich history and architectural marvels of Bangalore. A guided walking tour through the city's most significant landmarks.</p>
+                <a href="#" class="btn" onclick="openModal('heritageWalkModal')">Register Now</a>
             </div>
         </div>
     </section>
 
-    <!-- Modal for Art in the Park -->
-    <div id="artInTheParkModal" class="modal">
+    <!-- Modal for Photography Expedition -->
+    <div id="photographyModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('artInTheParkModal')">&times;</span>
-            <h2>Art in the Park Details</h2>
-            <p>Art in the Park is an open-air gallery that showcases local artists every Sunday at Cubbon Park. It’s a perfect opportunity to explore various forms of art and connect with the community.</p>
-            <a href="https://example.com/art-in-the-park" target="_blank">Learn More</a>
+            <span class="close" onclick="closeModal('photographyModal')">&times;</span>
+            <h2>Bangalore Photography Expedition</h2>
+            <p>Explore Bangalore's most photogenic locations with professional photographers. Perfect for both amateurs and professionals.</p>
+            
+            <h3>Bangalore Photo Highlights</h3>
+            <div class="event-images">
+                <img src="https://i.ytimg.com/vi/p3wy-4JxfmE/maxresdefault.jpg" alt="Cubbon Park" class="event-image" onclick="openImageModal('https:www.postoast.com/wp-content/uploads/2021/09/Cubbon-Park-Aerial-view.jpg')">
+                <img src="http://s3.india.com/travel/wp-content/uploads/2018/02/Vidhan-Soudha-photo-9.jpg" alt="Vidhana Soudha" class="event-image" onclick="openImageModal('http://www.thehistoryhub.com/wp-content/uploads/2014/04/Vidhana-Soudha-Inside.jpg')">
+                <img src="https://i.redd.it/o79mc85x0mu41.jpg" alt="Bangalore Palace" class="event-image" onclick="openImageModal('https://tse3.mm.bing.net/th?id=OIP.F2Im6BI1xa0yKfLHQgqdPwHaFj&pid=Api&P=0&h=180')">
+                <img src="https://c8.alamy.com/comp/BM452W/the-lalbagh-botanical-garden-in-bangalore-BM452W.jpg" alt="Lalbagh Botanical Garden" class="event-image" onclick="openImageModal('https://www.urtrips.com/wp-content/uploads/2022/09/lalbagh-botanical-garden-bangalore4.jpg')">
+            </div>
+
+            <h3>Registration</h3>
+            <form id="photographyRegistrationForm" class="registration-form">
+                <input type="text" id="photographyName" placeholder="Your Name" required>
+                <input type="email" id="photographyEmail" placeholder="Your Email" required>
+                <button type="submit">Register</button>
+            </form>
+            <div id="photographyRegistrationSuccess" style="display:none;" class="success-message"></div>
         </div>
     </div>
 
-    <!-- Modal for Bangalore Marathon -->
-    <div id="marathonModal" class="modal">
+    <!-- Modal for Heritage Walk -->
+    <div id="heritageWalkModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('marathonModal')">&times;</span>
-            <h2>Bangalore Marathon 2024 Details</h2>
-            <p>The Bangalore Marathon 2024 is the city’s biggest marathon event, promoting health and fitness while supporting local charities. Join us for a day of fun and fitness in March 2024.</p>
-            <a href="https://example.com/bangalore-marathon" target="_blank">Sign Up Here</a>
+            <span class="close" onclick="closeModal('heritageWalkModal')">&times;</span>
+            <h2>Heritage Walk: Bangalore's Historic Sites</h2>
+            <p>Journey through time and explore Bangalore's most significant historical landmarks with expert guides.</p>
+            
+            <h3>Heritage Locations</h3>
+            <div class="event-images">
+                <img src="https://tse2.mm.bing.net/th?id=OIP.1lMziCZETSyGW1-JP16xAgHaE5&pid=Api&P=0&h=180" alt="Tipu Sultan's Palace" class="event-image" onclick="openImageModal('https://images.freeimages.com/images/large-previews/9c0/mysore-palace-tipu-sultan-palace-palace-of-south-indian-india-palace-1143941.jpg')">
+                <img src="https://i.ytimg.com/vi/YhFuccRIl04/hqdefault.jpg" alt="Krishna Rajendra Market" class="event-image" onclick="openImageModal('https://www.owlstories.in/wp-content/uploads/IMG_1326.jpg')">
+                <img src="https://i.ytimg.com/vi/QRmA4KMAIwI/maxresdefault.jpg" alt="St. Mark's Cathedral" class="event-image" onclick="openImageModal('https://1.bp.blogspot.com/-sfq5KZzDOXs/WGIHsRcctmI/AAAAAAAAPXw/7wdknVqnl-MzoVBNEk1gxCP83JZrWg_8QCLcB/s1600/02%2BSaint%2BMarks%2BCathedral.jpg')">
+                <img src="https://i.ytimg.com/vi/z8yDG4_zNLU/maxresdefault.jpg" alt="Bangalore Fort" class="event-image" onclick="openImageModal('https://bangalore247.in/wp-content/uploads/2021/02/Bangalore-Fort.jpg')">
+            </div>
+
+            <h3>Registration</h3>
+            <form id="heritageWalkRegistrationForm" class="registration-form">
+                <input type="text" id="heritageWalkName" placeholder="Your Name" required>
+                <input type="email" id="heritageWalkEmail" placeholder="Your Email" required>
+                <button type="submit">Register</button>
+            </form>
+            <div id="heritageWalkRegistrationSuccess" style="display:none;" class="success-message"></div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('imageModal')">&times;</span>
+            <img id="fullSizeImage" style="width:100%; max-height:80vh; object-fit:contain;">
         </div>
     </div>
 
@@ -113,6 +115,14 @@
             document.getElementById(modalId).style.display = "none";
         }
 
+        // Open full-size image modal
+        function openImageModal(imageSrc) {
+            const imageModal = document.getElementById('imageModal');
+            const fullSizeImage = document.getElementById('fullSizeImage');
+            fullSizeImage.src = imageSrc;
+            imageModal.style.display = "block";
+        }
+
         // Close modal when clicking outside of it
         window.onclick = function(event) {
             const modals = document.getElementsByClassName('modal');
@@ -122,6 +132,25 @@
                 }
             }
         }
+
+        // Registration form handling
+        document.getElementById('photographyRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('photographyName').value;
+            const successDiv = document.getElementById('photographyRegistrationSuccess');
+            successDiv.innerHTML = `${name} has been registered successfully! ✅`;
+            successDiv.style.display = 'block';
+            this.reset();
+        });
+
+        document.getElementById('heritageWalkRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('heritageWalkName').value;
+            const successDiv = document.getElementById('heritageWalkRegistrationSuccess');
+            successDiv.innerHTML = `${name} has been registered successfully! ✅`;
+            successDiv.style.display = 'block';
+            this.reset();
+        });
     </script>
 </body>
 </html>
