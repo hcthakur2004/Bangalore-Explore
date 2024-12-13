@@ -6,48 +6,28 @@
     <title>Communities - Mitra Mandali</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Styles for the dialog */
-        .dialog {
-            display: none; /* Hide by default */
-            position: fixed;
-            z-index: 1000;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .social-links {
+            display: none;
+            margin-top: 10px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
         }
-
-        .dialog.active {
-            display: block; /* Show when active */
+        .social-links.visible {
+            display: block;
         }
-
-        .dialog-overlay {
-            position: fixed;
-            z-index: 900;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none; /* Hide by default */
+        .social-links a {
+            display: block;
+            margin: 5px 0;
+            color: #007bff;
+            text-decoration: none;
         }
-
-        .dialog-overlay.active {
-            display: block; /* Show when active */
-        }
-
-        .close-btn {
-            cursor: pointer;
-            color: red;
-            font-weight: bold;
+        .social-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <header>
         <nav>
             <ul>
@@ -63,104 +43,221 @@
         </nav>
     </header>
 
-    <!-- Communities Section -->
     <section id="communities">
         <h1>Join a Community</h1>
-        <div class="community-cards">
-            <div class="card">
-                <h2>Startup Enthusiasts</h2>
-                <p>A group for entrepreneurs and tech innovators looking to change the world.</p>
-                <a href="#" class="btn read-more" data-description="Join the Startup Enthusiasts to network with fellow entrepreneurs, share ideas, and explore funding opportunities.">Read More</a>
+        
+        <a href="#" id="add-community-btn" class="add-community-btn">+ Create New Community</a>
+
+        <div id="new-community-form" style="display:none;">
+            <form id="create-community-form">
+                <input type="text" id="community-name" placeholder="Community Name" required>
+                <textarea id="community-description" placeholder="Community Description" required></textarea>
+                <button type="submit">Create Community</button>
+                <button type="button" id="cancel-community-form">Cancel</button>
+            </form>
+        </div>
+
+        <div id="read-more-dialog" class="dialog">
+            <div class="dialog-content">
+                <h2 id="dialog-title"></h2>
+                <p id="dialog-description"></p>
+                <button id="close-dialog">Close</button>
             </div>
-            <div class="card">
+        </div>
+        <div id="dialog-overlay" class="dialog-overlay"></div>
+
+        <div class="community-cards" id="community-cards">
+            <div class="card" data-community-id="startup-enthusiasts">
+                <h2>Lalbagh Reads</h2>
+                <p>Reading community at Lalbagh</p>
+                <a href="https://linktr.ee/lalbaghreads" class="btn read-more" data-description="Reading community at Lalbagh, BLR🌿
+We meet every Sunday from 10am - 1pm🌸
+Get a book to read! 📖">Read More</a>
+                <div class="community-card-actions">
+                    <button class="join-btn">Join</button>
+                </div>
+                <div class="social-links">
+                    <h3>Community Social Links</h3>
+                    <a href="https://linktr.ee/lalbaghreads" target="_blank">Linktr.ee Profile</a>
+                    <a href="https://www.instagram.com/lalbaghreads/" target="_blank">Instagram</a>
+                    <a href="https://www.facebook.com/lalbaghreads" target="_blank">Facebook</a>
+                </div>
+            </div>
+            <div class="card" data-community-id="photography-lovers">
                 <h2>Photography Lovers</h2>
                 <p>Connect with Bangalore's photography community and share your best clicks.</p>
                 <a href="#" class="btn read-more" data-description="Photography Lovers is a vibrant community where you can share your best shots, participate in photo walks, and learn from professionals.">Read More</a>
+                <div class="community-card-actions">
+                    <button class="join-btn">Join</button>
+                </div>
+                <div class="social-links">
+                    <h3>Community Social Links</h3>
+                    <a href="https://www.instagram.com/blr_photo_lovers" target="_blank">Instagram</a>
+                    <a href="https://www.facebook.com/groups/bangalorephotography" target="_blank">Facebook Group</a>
+                    <a href="https://discord.gg/photographycommunity" target="_blank">Discord Server</a>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-community-id="bangalore-book-club">
                 <h2>Bangalore Book Club</h2>
                 <p>A place for book lovers to discuss literature, share recommendations, and meet like-minded individuals.</p>
                 <a href="#" class="btn read-more" data-description="The Bangalore Book Club offers monthly meetups to discuss selected books, share insights, and enjoy themed gatherings.">Read More</a>
-            </div>
-            <div class="card">
-                <h2>Tech Innovators</h2>
-                <p>A community for tech enthusiasts to share ideas and collaborate on projects.</p>
-                <a href="#" class="btn read-more" data-description="Join Tech Innovators to collaborate on exciting tech projects, learn about new trends, and enhance your skills with workshops and hackathons.">Read More</a>
-            </div>
-            <div class="card">
-                <h2>Art and Craft</h2>
-                <p>For those who love to create art and craft projects.</p>
-                <a href="#" class="btn read-more" data-description="The Art and Craft community welcomes all creatives to share their works, participate in workshops, and discover new techniques.">Read More</a>
-            </div>
-            <div class="card">
-                <h2>Music Lovers</h2>
-                <p>Connect with fellow music enthusiasts and share your playlists.</p>
-                <a href="#" class="btn read-more" data-description="Music Lovers is the perfect community for discussing genres, sharing playlists, and attending local gigs and open mic events.">Read More</a>
-            </div>
-            <div class="card">
-                <h2>Culinary Explorers</h2>
-                <p>For foodies who love to explore new recipes and cuisines.</p>
-                <a href="#" class="btn read-more" data-description="Join Culinary Explorers to swap recipes, attend cooking classes, and discover the rich food culture of Bangalore.">Read More</a>
-            </div>
-            <div class="card">
-                <h2>Travel Enthusiasts</h2>
-                <p>Share travel experiences and tips with fellow adventurers.</p>
-                <a href="#" class="btn read-more" data-description="Travel Enthusiasts is a community for those who love to explore new places, share travel tips, and plan group trips.">Read More</a>
-            </div>
-            <div class="card">
-                <h2>Fitness Fanatics</h2>
-                <p>A group dedicated to health and fitness.</p>
-                <a href="#" class="btn read-more" data-description="Fitness Fanatics encourages a healthy lifestyle through group workouts, challenges, and sharing nutrition tips.">Read More</a>
-            </div>
-            <div class="card">
-                <h2>Nature Lovers</h2>
-                <p>A community for those who love the outdoors and environmental conservation.</p>
-                <a href="#" class="btn read-more" data-description="Join Nature Lovers to participate in conservation efforts, nature walks, and discussions about sustainability and the environment.">Read More</a>
+                <div class="community-card-actions">
+                    <button class="join-btn">Join</button>
+                </div>
+                <div class="social-links">
+                    <h3>Community Social Links</h3>
+                    <a href="https://www.meetup.com/bangalore-book-club" target="_blank">Meetup Group</a>
+                    <a href="https://www.goodreads.com/group/show/bangalore-book-club" target="_blank">Goodreads Group</a>
+                    <a href="https://www.instagram.com/bangalore.bookclub" target="_blank">Instagram</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Dialog for Read More -->
-    <div class="dialog-overlay" id="dialog-overlay"></div>
-    <div class="dialog" id="dialog">
-        <span class="close-btn" id="close-btn">&times;</span>
-        <h2 id="dialog-title"></h2>
-        <p id="dialog-description"></p>
-    </div>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Bangalore Explore. All rights reserved.</p>
-    </footer>
-
     <script>
-        // JavaScript to handle dialog opening and closing
-        const readMoreButtons = document.querySelectorAll('.read-more');
-        const dialog = document.getElementById('dialog');
+        // Get references to key elements
+        const addCommunityBtn = document.getElementById('add-community-btn');
+        const newCommunityForm = document.getElementById('new-community-form');
+        const createCommunityForm = document.getElementById('create-community-form');
+        const cancelCommunityFormBtn = document.getElementById('cancel-community-form');
+        const communityCards = document.getElementById('community-cards');
+        const dialog = document.getElementById('read-more-dialog');
+        const dialogOverlay = document.getElementById('dialog-overlay');
         const dialogTitle = document.getElementById('dialog-title');
         const dialogDescription = document.getElementById('dialog-description');
-        const dialogOverlay = document.getElementById('dialog-overlay');
-        const closeButton = document.getElementById('close-btn');
+        const closeDialogBtn = document.getElementById('close-dialog');
 
-        readMoreButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
+        // Show new community form
+        addCommunityBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            newCommunityForm.style.display = 'block';
+        });
+
+        // Cancel new community form
+        cancelCommunityFormBtn.addEventListener('click', () => {
+            newCommunityForm.style.display = 'none';
+            createCommunityForm.reset();
+        });
+
+        // Close dialog
+        closeDialogBtn.addEventListener('click', () => {
+            dialog.classList.remove('active');
+            dialogOverlay.classList.remove('active');
+        });
+
+        // Attach Join and Delete Listeners to Community Cards
+        function attachCommunityCardListeners(card) {
+            const joinBtn = card.querySelector('.join-btn');
+            const deleteBtn = card.querySelector('.delete-btn');
+            const readMoreBtn = card.querySelector('.read-more');
+            const socialLinks = card.querySelector('.social-links');
+
+            // Join button functionality
+            joinBtn.addEventListener('click', () => {
+                if (!joinBtn.classList.contains('joined')) {
+                    joinBtn.textContent = 'Joined';
+                    joinBtn.classList.add('joined');
+                    const tickSpan = document.createElement('span');
+                    tickSpan.textContent = '✓';
+                    tickSpan.classList.add('joined-tick');
+                    joinBtn.appendChild(tickSpan);
+
+                    // Show social links when joined
+                    if (socialLinks) {
+                        socialLinks.classList.add('visible');
+                    }
+                }
+            });
+
+            // Delete button functionality (only for dynamically created communities)
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', () => {
+                    const communityId = card.getAttribute('data-community-id');
+                    const originalCommunities = [
+                        'startup-enthusiasts', 
+                        'photography-lovers', 
+                        'bangalore-book-club'
+                    ];
+                    
+                    if (!originalCommunities.includes(communityId)) {
+                        card.remove();
+                    } else {
+                        alert('This community cannot be deleted.');
+                    }
+                });
+            }
+
+            // Re-attach read more functionality
+            readMoreBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                dialogTitle.textContent = button.previousElementSibling.previousElementSibling.textContent; // Card title
-                dialogDescription.textContent = button.dataset.description; // Get description from data attribute
+                dialogTitle.textContent = readMoreBtn.previousElementSibling.previousElementSibling.textContent;
+                dialogDescription.textContent = readMoreBtn.dataset.description;
                 dialog.classList.add('active');
                 dialogOverlay.classList.add('active');
             });
+        }
+
+        // When creating a new community, add social links section
+        createCommunityForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const communityName = document.getElementById('community-name').value;
+            const communityDescription = document.getElementById('community-description').value;
+
+            const newCommunityCard = document.createElement('div');
+            newCommunityCard.classList.add('card');
+            const communityId = communityName.toLowerCase().replace(/\s+/g, '-');
+            newCommunityCard.setAttribute('data-community-id', communityId);
+            newCommunityCard.innerHTML = `
+                <h2>${communityName}</h2>
+                <p>${communityDescription}</p>
+                <a href="#" class="btn read-more" data-description="Description of ${communityName}">Read More</a>
+                <div class="community-card-actions">
+                    <button class="join-btn">Join</button>
+                    <button class="delete-btn">Delete</button>
+                </div>
+                <div class="social-links">
+                    <h3>Community Social Links</h3>
+                    <input type="text" placeholder="Instagram Link" class="social-input">
+                    <input type="text" placeholder="Facebook Link" class="social-input">
+                    <input type="text" placeholder="Discord/Other Link" class="social-input">
+                    <button class="save-social-links">Save Links</button>
+                </div>
+            `;
+
+            communityCards.appendChild(newCommunityCard);
+
+            // Attach event listeners to new buttons
+            attachCommunityCardListeners(newCommunityCard);
+
+            // Add functionality to save social links
+            const saveLinksBtn = newCommunityCard.querySelector('.save-social-links');
+            const socialInputs = newCommunityCard.querySelectorAll('.social-input');
+            const socialLinksContainer = newCommunityCard.querySelector('.social-links');
+
+            saveLinksBtn.addEventListener('click', () => {
+                // Clear existing links
+                const existingLinks = socialLinksContainer.querySelectorAll('a');
+                existingLinks.forEach(link => link.remove());
+
+                // Add new links
+                socialInputs.forEach(input => {
+                    if (input.value.trim() !== '') {
+                        const link = document.createElement('a');
+                        link.href = input.value;
+                        link.textContent = input.placeholder.replace(' Link', '');
+                        link.target = '_blank';
+                        socialLinksContainer.insertBefore(link, saveLinksBtn);
+                    }
+                });
+            });
+
+            // Reset and hide form
+            createCommunityForm.reset();
+            newCommunityForm.style.display = 'none';
         });
 
-        closeButton.addEventListener('click', () => {
-            dialog.classList.remove('active');
-            dialogOverlay.classList.remove('active');
-        });
-
-        dialogOverlay.addEventListener('click', () => {
-            dialog.classList.remove('active');
-            dialogOverlay.classList.remove('active');
-        });
+        // Initial attachment of listeners to existing community cards
+        document.querySelectorAll('.card').forEach(attachCommunityCardListeners);
     </script>
 </body>
 </html>
