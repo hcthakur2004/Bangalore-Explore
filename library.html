@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library - Mitra Mandali</title>
+    <title>Library - Bangalore Explore - Connect with Bangalore's Communities</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
     </header>
 
     <!-- Library Section -->
-    <section id="library">
+    <section class="library">
         <h1>Community Resource Library</h1>
         <ul class="library-list">
             <li><a href="#">Event Planning Guide for Bangalore 2024</a></li>
@@ -32,11 +32,116 @@
             <li><a href="#">Local Business Directory</a></li>
             <li><a href="#">Bangalore Public Transport Guide</a></li>
         </ul>
+
+        <!-- New Community Sections -->
+        <div class="community-sections">
+            <!-- Joined Communities -->
+            <div class="joined-communities">
+                <h2>Joined Communities</h2>
+                <div id="joined-communities-list">
+                    <!-- Communities will be dynamically added here -->
+                    <div class="community-item">
+                        <span>Startup Enthusiasts</span>
+                        <div class="community-actions">
+                            <button class="btn-small btn-view" onclick="viewCommunityDetails('Startup Enthusiasts')">View</button>
+                            <button class="btn-small btn-leave">Leave</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Created Communities -->
+            <div class="created-communities">
+                <h2>Created Communities</h2>
+                <div id="created-communities-list">
+                    <!-- Communities will be dynamically added here -->
+                    <div class="community-item">
+                        <span>Tech Innovation Hub</span>
+                        <div class="community-actions">
+                            <button class="btn-small btn-view" onclick="viewCommunityDetails('Tech Innovation Hub')">View</button>
+                            <button class="btn-small btn-leave">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Community Details Modal -->
+    <div id="community-details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCommunityModal()">&times;</span>
+            <h2 id="community-modal-title"></h2>
+            <p id="community-modal-description"></p>
+            <div id="community-modal-members"></div>
+        </div>
+    </div>
 
     <!-- Footer Section -->
     <footer>
         <p>&copy; 2024 Bangalore Explore. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Community Details Modal Functions
+        function viewCommunityDetails(communityName) {
+            const modal = document.getElementById('community-details-modal');
+            const titleElement = document.getElementById('community-modal-title');
+            const descriptionElement = document.getElementById('community-modal-description');
+            const membersElement = document.getElementById('community-modal-members');
+
+            // Simulated community details (would typically come from backend)
+            const communityDetails = {
+                'Startup Enthusiasts': {
+                    description: 'A dynamic community for entrepreneurs and tech innovators seeking to network and grow.',
+                    members: ['Harish', 'Adarsh', 'Ruchitha','Bhagyashree']
+                },
+                'Tech Innovation Hub': {
+                    description: 'A platform for tech professionals to collaborate, share ideas, and drive innovation.',
+                    members: ['Harish', 'Adarsh', 'Ruchitha','Bhagyashree']
+                }
+            };
+
+            const details = communityDetails[communityName];
+            
+            titleElement.textContent = communityName;
+            descriptionElement.textContent = details.description;
+            
+            // Populate members
+            membersElement.innerHTML = '<h3>Members:</h3>' + 
+                details.members.map(member => `<p>${member}</p>`).join('');
+
+            modal.style.display = 'block';
+        }
+
+        function closeCommunityModal() {
+            document.getElementById('community-details-modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('community-details-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Leave/Delete Community Functionality
+        document.querySelectorAll('.btn-leave').forEach(button => {
+            button.addEventListener('click', function() {
+                const communityItem = this.closest('.community-item');
+                const communityName = communityItem.querySelector('span').textContent;
+                
+                // Confirm before leaving/deleting
+                const confirmMessage = this.textContent === 'Leave' 
+                    ? `Are you sure you want to leave ${communityName}?`
+                    : `Are you sure you want to delete ${communityName}?`;
+                
+                if (confirm(confirmMessage)) {
+                    communityItem.remove();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
