@@ -46,13 +46,13 @@
     <section id="explore">
         <h2>Explore Communities & Events</h2>
         <div class="explore-cards">
-            <div class="card" onclick="eventDetails('Event 1', 'Join the upcoming music festival at Cubbon Park.')">
-                <h3>Event 1</h3>
-                <p>Join the upcoming music festival at Cubbon Park.</p>
+            <div class="card" onclick="window.location.href='communities.html';">
+                <h3>Events</h3>
+                <p>Join the upcoming Events.</p>
             </div>
-            <div class="card" onclick="eventDetails('Community 1', 'Connect with Bangalore\'s startup ecosystem.')">
-                <h3>Community 1</h3>
-                <p>Connect with Bangalore's startup ecosystem.</p>
+            <div class="card" onclick="window.location.href='explore.html';">
+                <h3>Communities</h3>
+                <p>Connect with Bangalore's Communities.</p>
             </div>
         </div>
     </section>
@@ -95,6 +95,6 @@
         // Mock recommendation list
         const recommendations = ['Photography Club', 'Startup Meet', 'Book Fair'];
         document.getElementById('recommendationItem').innerText = recommendations.join(', ');
-    </script>
+    </script>   
 </body>
 </html>
